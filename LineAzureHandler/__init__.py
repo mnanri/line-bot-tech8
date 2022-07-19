@@ -1,6 +1,7 @@
 import logging
 import os
 import azure.functions as func
+import json
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -18,6 +19,7 @@ channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
+
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
@@ -38,9 +40,20 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     return func.HttpResponse('OK')
 
 
+def get_answer(name: str, question: str):
+    f = open("db.json", "r")
+    db_json = json.load(f)
+    return db_json[name][question]
+
+
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
+    _body = event.message.text.split("/")
+    name = _body[0]
+    question = _body[1]
+    answer = get_answer(name, question)
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text)
+        TextSendMessage(text="hogehoge")
     )
