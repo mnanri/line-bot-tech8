@@ -41,7 +41,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
 
 def get_answer(name: str, question: str):
-    f = open("db.json", "r")
+    f = open("./LineAzureHandler/db.json", "r")
     db_json = json.load(f)
     return db_json[name][question]
 
@@ -55,5 +55,5 @@ def message_text(event):
 
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text="hogehoge")
+        TextSendMessage(text=answer)
     )

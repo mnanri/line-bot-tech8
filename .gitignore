@@ -136,3 +136,4 @@ __azurite_db*__.json
 
 # user secret data
 LineAzureHandler/.env
+LineAzureHandler/db.json
