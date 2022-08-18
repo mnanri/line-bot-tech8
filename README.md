@@ -14,3 +14,10 @@
 - 今後の方針
   - 参加者に**このあとどうやってサービスをよくしていくか**を議論してもらう（アイディアソン的な）
   - LINE API を読んでもらってもいいし，自由発想でもよいかなぁ
+
+## 本番用
+
+- 参考サイト
+  - https://zenn.dev/mochan_tk/articles/d01a24bb576d18
+- `main` branch: カンペ用
+- `for-error-handling` branch: 実装用（最低限の`__ini__.py`）
